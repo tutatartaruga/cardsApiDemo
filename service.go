@@ -40,6 +40,7 @@ func shuffleDeckByID(w http.ResponseWriter, r *http.Request) {
 	}
 	if index >= 0 {
 		json.NewEncoder(w).Encode(&ResponseDeck{Status: http.StatusOK, Data: shuffleDeck(&issuedDecks[index])})
+		return
 	}
 	json.NewEncoder(w).Encode(&ResponseDeckNotFound{Status: http.StatusNotFound, Message: deckNotFound})
 }
