@@ -12,6 +12,7 @@ func createRouter() {
 	r.HandleFunc("/api/deck/new", getNewDeck).Methods("GET")
 	r.HandleFunc("/api/deck/{id}/get", findDeckByID).Methods("GET")
 	r.HandleFunc("/api/deck/{id}/shuffle", shuffleDeckByID).Methods("GET")
+	r.HandleFunc("/api/deck/shuffle/new", getNewShuffledDeck).Methods("GET")
 
 	log.Fatal(http.ListenAndServe(":8000", r))
 }
