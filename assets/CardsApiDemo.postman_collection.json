@@ -1,0 +1,104 @@
+{
+	"info": {
+		"_postman_id": "5c0acef6-7ead-48ad-8bfc-9a2b56b2af35",
+		"name": "CardsApiDemo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "{{url}}/api/deck/new",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/deck/new",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"deck",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/api/deck/new/shuffle",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/deck/new/shuffle",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"deck",
+						"new",
+						"shuffle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/api/deck/5105363169370179217/get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/deck/5105363169370179217/get",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"deck",
+						"5105363169370179217",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/api/deck/5105363169370179217/shuffle",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/deck/5105363169370179217/shuffle",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"deck",
+						"5105363169370179217",
+						"shuffle"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
