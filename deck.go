@@ -1,7 +1,9 @@
 package main
 
+// Deck struct
 type Deck struct {
 	ID    string   `json:"id"`
+	Size  int      `json:"size"`
 	Cards [52]card `json:"cards"`
 }
 
@@ -15,7 +17,7 @@ func createDeck() Deck {
 			index++
 		}
 	}
-	return Deck{id, cards}
+	return Deck{id, len(cards), cards}
 }
 
 func getCode(value, suit string) string {
