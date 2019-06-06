@@ -13,17 +13,19 @@ func getNewDeck(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var newDeck = createDeck()
 	issuedDecks = append(issuedDecks, newDeck)
-	json.NewEncoder(w).Encode(newDeck)
+	json.NewEncoder(w).Encode(&ResponseDeck{Status: http.StatusOK, Data: newDeck})
 }
 
 func findDeckByID(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
-	for _, deck := range issuedDecks {
-		if deck.ID == params["id"] {
-			json.NewEncoder(w).Encode(deck)
+	for i := 0; i < len(issuedDecks); i++ {
+		if issuedDecks[i].ID == params["id"] {
+			json.NewEncoder(w).Encode(&ResponseDeck{Status: http.StatusOK, Data: issuedDecks[i]})
+			return
 		}
 	}
+	json.NewEncoder(w).Encode(&ResponseDeckNotFound{Status: http.StatusNotFound, Message: deckNotFound})
 }
 
 func shuffleDeckByID(w http.ResponseWriter, r *http.Request) {
