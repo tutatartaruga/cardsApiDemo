@@ -2,7 +2,9 @@ package main
 
 import (
 	"encoding/json"
+	"math/rand"
 	"net/http"
+	"time"
 
 	"github.com/gorilla/mux"
 )
@@ -24,4 +26,23 @@ func findDeckByID(w http.ResponseWriter, r *http.Request) {
 			json.NewEncoder(w).Encode(deck)
 		}
 	}
+}
+
+func shuffleDeck(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r)
+
+	var index int
+	for i := 0; i < len(issuedDecks); i++ {
+		if issuedDecks[i].ID == params["id"] {
+			index = i
+			break
+		}
+	}
+
+	rand.Seed(time.Now().UnixNano())
+	rand.Shuffle(len(issuedDecks[index].Cards), func(i, j int) {
+		issuedDecks[index].Cards[i], issuedDecks[index].Cards[j] = issuedDecks[index].Cards[j], issuedDecks[index].Cards[i]
+	})
+	json.NewEncoder(w).Encode(issuedDecks[index])
 }
