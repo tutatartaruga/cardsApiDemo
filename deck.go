@@ -1,12 +1,12 @@
 package main
 
-type deck struct {
-	ID    uint32   `json:"id"`
+type Deck struct {
+	ID    string   `json:"id"`
 	Cards [52]card `json:"cards"`
 }
 
-func createDeck() deck {
-	var id = getRandomUint32()
+func createDeck() Deck {
+	var id = getRandomString()
 	var cards [52]card
 	index := 0
 	for i := 0; i < len(values); i++ {
@@ -15,7 +15,7 @@ func createDeck() deck {
 			index++
 		}
 	}
-	return deck{id, cards}
+	return Deck{id, cards}
 }
 
 func getCode(value, suit string) string {

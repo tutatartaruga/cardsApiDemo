@@ -2,10 +2,11 @@ package main
 
 import (
 	"math/rand"
+	"strconv"
 	"time"
 )
 
-func getRandomUint32() uint32 {
+func getRandomString() string {
 	rand.Seed(time.Now().Unix())
-	return rand.Uint32()
+	return strconv.Itoa(rand.Int())
 }
