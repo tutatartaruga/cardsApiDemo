@@ -1,9 +1,6 @@
 package main
 
-import (
-	"math/rand"
-	"time"
-)
+import "fmt"
 
 var issuedDecks []Deck
 
@@ -46,16 +43,12 @@ func drawFromDeck(count, deckIndex int) drawnCards {
 	} else {
 		index = deckIndex
 	}
-
 	var dCards []card
-	for i := 0; i < count; i++ {
-		rand.Seed(time.Now().UnixNano())
-		var cardInd = rand.Intn(issuedDecks[index].Size)
-
-		dCards = append(dCards, issuedDecks[index].Cards[cardInd])
-		issuedDecks[index].Cards = append(issuedDecks[index].Cards[:cardInd], issuedDecks[index].Cards[cardInd+1:]...)
-		issuedDecks[index].Size--
-
+	if count <= issuedDecks[index].Size {
+		dCards = append(dCards, issuedDecks[index].Cards[:count]...)
+		issuedDecks[index].Cards = append(issuedDecks[index].Cards[:0], issuedDecks[index].Cards[0+count:]...)
+		issuedDecks[index].Size = issuedDecks[index].Size - count
 	}
+	fmt.Println(dCards)
 	return drawnCards{DeckID: issuedDecks[index].ID, DeckSize: issuedDecks[index].Size, Cards: dCards}
 }

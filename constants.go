@@ -4,4 +4,6 @@ var values = [13]string{"ACE", "2", "3", "4", "5", "6", "7", "8", "9", "10", "JA
 
 var suits = [4]string{"HEARTS", "CLUBS", "DIAMONDS", "SPADES"}
 
-const deckNotFound = "DECK NOT FOUND"
+const deckNotFound = "Deck not found"
+
+const notEnoughCards = "Not enough cards in the deck"

@@ -20,7 +20,7 @@ func findDeckHandler(w http.ResponseWriter, r *http.Request) {
 	if len(deck.ID) > 0 {
 		json.NewEncoder(w).Encode(&ResponseDeck{Status: http.StatusOK, Data: deck})
 	} else {
-		json.NewEncoder(w).Encode(&ResponseDeckNotFound{Status: http.StatusNotFound, Message: deckNotFound})
+		json.NewEncoder(w).Encode(&ResponseError{Status: http.StatusNotFound, Message: deckNotFound})
 	}
 }
 
@@ -32,7 +32,7 @@ func shuffleDeckHandler(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(&ResponseDeck{Status: http.StatusOK, Data: shuffleDeck(&issuedDecks[index])})
 		return
 	}
-	json.NewEncoder(w).Encode(&ResponseDeckNotFound{Status: http.StatusNotFound, Message: deckNotFound})
+	json.NewEncoder(w).Encode(&ResponseError{Status: http.StatusNotFound, Message: deckNotFound})
 }
 
 func newShuffleDeckHandler(w http.ResponseWriter, r *http.Request) {
@@ -46,7 +46,12 @@ func newDeckDrawHandler(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	var count, err = strconv.Atoi(params["count"])
 	if err == nil {
-		json.NewEncoder(w).Encode(&ResponseDrawnCards{Status: http.StatusOK, Data: drawFromDeck(count, -1)})
+		var drawnCards = drawFromDeck(count, -1)
+		if len(drawnCards.Cards) > 0 {
+			json.NewEncoder(w).Encode(&ResponseDrawnCards{Status: http.StatusOK, Data: drawnCards})
+			return
+		}
+		json.NewEncoder(w).Encode(&ResponseError{Status: http.StatusNotFound, Message: notEnoughCards})
 	}
 }
 
@@ -55,11 +60,16 @@ func oldDeckDrawHandler(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	var index = getDeckIndex(params["id"])
 	if index < 0 {
-		json.NewEncoder(w).Encode(&ResponseDeckNotFound{Status: http.StatusNotFound, Message: deckNotFound})
+		json.NewEncoder(w).Encode(&ResponseError{Status: http.StatusNotFound, Message: deckNotFound})
 		return
 	}
 	var count, err = strconv.Atoi(params["count"])
 	if err == nil {
-		json.NewEncoder(w).Encode(&ResponseDrawnCards{Status: http.StatusOK, Data: drawFromDeck(count, index)})
+		var drawnCards = drawFromDeck(count, index)
+		if len(drawnCards.Cards) > 0 {
+			json.NewEncoder(w).Encode(&ResponseDrawnCards{Status: http.StatusOK, Data: drawnCards})
+			return
+		}
+		json.NewEncoder(w).Encode(&ResponseError{Status: http.StatusNotFound, Message: notEnoughCards})
 	}
 }
