@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 var issuedDecks []Deck
 
 func getNewDeck() Deck {
@@ -49,6 +47,5 @@ func drawFromDeck(count, deckIndex int) drawnCards {
 		issuedDecks[index].Cards = append(issuedDecks[index].Cards[:0], issuedDecks[index].Cards[0+count:]...)
 		issuedDecks[index].Size = issuedDecks[index].Size - count
 	}
-	fmt.Println(dCards)
 	return drawnCards{DeckID: issuedDecks[index].ID, DeckSize: issuedDecks[index].Size, Cards: dCards}
 }
