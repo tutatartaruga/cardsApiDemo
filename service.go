@@ -1,5 +1,10 @@
 package main
 
+import (
+	"math/rand"
+	"time"
+)
+
 var issuedDecks []Deck
 
 func getNewDeck() Deck {
@@ -29,7 +34,23 @@ func getDeckIndex(id string) int {
 }
 
 func getNewDeckIndex() int {
-	var newDeck = createDeck()
-	issuedDecks = append(issuedDecks, newDeck)
+	var deck = createDeck()
+	issuedDecks = append(issuedDecks, deck)
 	return len(issuedDecks) - 1
+}
+
+func drawFromNewDeck(count int) drawnCards {
+	var index = getNewDeckIndex()
+
+	var dCards []card
+	for i := 0; i < count; i++ {
+		rand.Seed(time.Now().UnixNano())
+		var cardInd = rand.Intn(issuedDecks[index].Size)
+
+		dCards = append(dCards, issuedDecks[index].Cards[cardInd])
+		issuedDecks[index].Cards = append(issuedDecks[index].Cards[:cardInd], issuedDecks[index].Cards[cardInd+1:]...)
+		issuedDecks[index].Size--
+
+	}
+	return drawnCards{DeckID: issuedDecks[index].ID, DeckSize: issuedDecks[index].Size, Cards: dCards}
 }

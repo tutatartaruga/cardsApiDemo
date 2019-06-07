@@ -11,3 +11,9 @@ type ResponseDeckNotFound struct {
 	Status  int    `json:"status"`
 	Message string `json:"message"`
 }
+
+//  ResponseDrawnCards struct
+type ResponseDrawnCards struct {
+	Status int        `json:"status"`
+	Data   drawnCards `json:"data"`
+}
