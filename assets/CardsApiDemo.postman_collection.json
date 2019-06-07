@@ -62,14 +62,14 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}/api/deck/5105363169370179217/get",
+					"raw": "{{url}}/api/deck/8713969807675673588/get",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
 						"deck",
-						"5105363169370179217",
+						"8713969807675673588",
 						"get"
 					]
 				}
@@ -86,15 +86,67 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}/api/deck/5105363169370179217/shuffle",
+					"raw": "{{url}}/api/deck/8713969807675673588/shuffle",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
 						"deck",
-						"5105363169370179217",
+						"8713969807675673588",
 						"shuffle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/api/deck/new/draw/count/52",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/deck/new/draw/count/52",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"deck",
+						"new",
+						"draw",
+						"count",
+						"52"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/api/deck/8713969807675673588/draw/count/8",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/deck/8713969807675673588/draw/count/8",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"deck",
+						"8713969807675673588",
+						"draw",
+						"count",
+						"8"
 					]
 				}
 			},
