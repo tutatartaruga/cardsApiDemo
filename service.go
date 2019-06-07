@@ -39,8 +39,13 @@ func getNewDeckIndex() int {
 	return len(issuedDecks) - 1
 }
 
-func drawFromNewDeck(count int) drawnCards {
-	var index = getNewDeckIndex()
+func drawFromDeck(count, deckIndex int) drawnCards {
+	var index int
+	if deckIndex == -1 {
+		index = getNewDeckIndex()
+	} else {
+		index = deckIndex
+	}
 
 	var dCards []card
 	for i := 0; i < count; i++ {

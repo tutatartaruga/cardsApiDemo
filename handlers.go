@@ -46,6 +46,20 @@ func newDeckDrawHandler(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	var count, err = strconv.Atoi(params["count"])
 	if err == nil {
-		json.NewEncoder(w).Encode(&ResponseDrawnCards{Status: http.StatusOK, Data: drawFromNewDeck(count)})
+		json.NewEncoder(w).Encode(&ResponseDrawnCards{Status: http.StatusOK, Data: drawFromDeck(count, -1)})
+	}
+}
+
+func oldDeckDrawHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r)
+	var index = getDeckIndex(params["id"])
+	if index < 0 {
+		json.NewEncoder(w).Encode(&ResponseDeckNotFound{Status: http.StatusNotFound, Message: deckNotFound})
+		return
+	}
+	var count, err = strconv.Atoi(params["count"])
+	if err == nil {
+		json.NewEncoder(w).Encode(&ResponseDrawnCards{Status: http.StatusOK, Data: drawFromDeck(count, index)})
 	}
 }
