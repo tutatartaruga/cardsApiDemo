@@ -7,3 +7,5 @@ var suits = [4]string{"HEARTS", "CLUBS", "DIAMONDS", "SPADES"}
 const deckNotFound = "Deck not found"
 
 const notEnoughCards = "Not enough cards in the deck"
+
+const countZero = "Draw count must be at least 1"
