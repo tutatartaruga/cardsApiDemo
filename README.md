@@ -13,5 +13,3 @@ Basic REST API written in GO-lang with couple of endpoints which give back a who
 /api/deck/{id}/draw/count/{count} </br>
 
 #
-### To do
-Every card in the response data should have an additional field "image" which contains an url of a corresponding card image

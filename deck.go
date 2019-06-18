@@ -18,7 +18,13 @@ func createDeck() Deck {
 	index := 0
 	for i := 0; i < len(values); i++ {
 		for j := 0; j < len(suits); j++ {
-			cards = append(cards, card{Code: getCode(values[i], suits[j]), Value: values[i], Suit: suits[j]})
+			var cardCode = getCode(values[i], suits[j])
+			cards = append(cards, card{
+				Code:     cardCode,
+				Value:    values[i],
+				Suit:     suits[j],
+				ImageURL: imageURLPrefix + cardCode + imageExt,
+			})
 			index++
 		}
 	}
